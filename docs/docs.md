@@ -1,18 +1,16 @@
-# Arch Beginner Handy Documentation
+# Based Installer (for arch btw)
 
-##### Created by absolute-quantum with <3 for u all :)
+##### [Created by absolute-quantum##### ](https://github.com/absolute-quantum)
 
-[absolute-quantum · GitHub](https://github.com/absolute-quantum)
+> Document Version 0.3 - April 25 2022
 
-![](/home/user/Projects/basedinstaller/logo.png)
+<img src="logo.png" title="" alt="" data-align="left">
 
-### Important System Information
+### Important
 
-> Document Version 0.2 - April 25 2022
+Written for operation system: `Arch Linux pc 5.17.4-zen1-1-zen x86_64 GNU/Linux`
 
-Written for operation system: *Arch Linux pc 5.17.4-zen1-1-zen x86_64 GNU/Linux*
-
-Specifically for a system with a SSD in mind, nvidi, intel and no swap
+Specifically for a system with a SSD in mind, nvidia videocard and intel cpu
 
 ### Images
 
@@ -22,6 +20,8 @@ Image: [archlinux-2022.04.05-$x$86_64.iso](https://mirror.ams1.nl.leaseweb.net/a
 Signature: [archlinux-2022.04.05-x86_64.iso.sig](https://mirror.ams1.nl.leaseweb.net/archlinux/iso/2022.04.05/archlinux-2022.04.05-x86_64.iso.sig)
 
 Linux-zen: [[linux-zen - Arch Linux 5.17.4.zen1-1](https://security.archlinux.org/package/linux-zen)]()
+
+Install ISO and signatures with `iso/install.sh`
 
 ###### Checksum verfication
 
@@ -34,6 +34,11 @@ wget https://mirror.ams1.nl.leaseweb.net/archlinux/iso/2022.04.05/archlinux-2022
 
 # Verify file with signature
 gpg --verify archlinux-2022.04.05-x86_64.iso.sig archlinux-2022.04.05-x86_64.iso
+
+
+# Or simple execute script
+cd iso
+./install.sh
 ```
 
 ### Setup root/user
