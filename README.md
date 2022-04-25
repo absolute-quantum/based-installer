@@ -1,3 +1,3 @@
 # based-installer
 
-Checkout our [docs.md](docs)
+Checkout our [docs/index.md](docs/index.md)
