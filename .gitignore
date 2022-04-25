@@ -6,3 +6,4 @@ node_modules
 *.ntvs*
 *.njsproj
 *.sln
+iso/*.iso

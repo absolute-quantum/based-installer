@@ -162,7 +162,8 @@ set fish_color_error red --bold
 fish_config theme choose "Tomorrow Night Bright"
 
 su root
-iwcon
+alias coninfo "sudo sh -c 'echo Logged in users:';who;echo '------------';sudo netstat -pnltu;sudo ufw status"                                                               
+funcsave coninfo
 ```
 
 ###### Install useful pacman and yay packages because they are frankly cool bruh
