@@ -25,7 +25,7 @@ Install ISO and signatures with `iso/install.sh`
 
 ###### Checksum verfication
 
-```sh
+```fish
 # Get image
 wget https://mirror.ams1.nl.leaseweb.net/archlinux/iso/2022.04.05/archlinux-2022.04.05-x86_64.iso
 
@@ -43,7 +43,7 @@ cd iso
 
 ### Setup root/user
 
-```sh
+```fish
 set -g -x HOMEUSER user
 set -g -x ROOTUSER root
 ```
@@ -52,7 +52,7 @@ set -g -x ROOTUSER root
 
 ###### Using pacman multilib repository
 
-```sh
+```fish
 su root
 
 # We want to use community pacman packages
@@ -63,7 +63,7 @@ exit
 
 ###### Increase max downloads in pacman to 100, because why not :)
 
-```sh
+```fish
 su root
 # We increase the max paralleldownloads to 100 via sed, 
 # it's a pretty epic command, sed that is.
@@ -74,7 +74,7 @@ exit
 
 ###### Updating pacman packages
 
-```sh
+```fish
 su root
 
 # Update pacman packages
@@ -85,7 +85,7 @@ exit
 
 ###### Installing yay
 
-```sh
+```fish
 # Lets goto our opt directory
 # Reserved for the installation of add-on application software packages
 cd /opt
@@ -113,7 +113,7 @@ yay -Ps
 
 ###### Installing
 
-```sh
+```fish
 su root
 
 # Install fish via pacman
@@ -129,7 +129,7 @@ fish
 
 ###### Set as default
 
-```sh
+```fish
 # Set the fish shell as default you baka
 chsh --shell /bin/fish $HOMEUSER
 su root
@@ -140,7 +140,7 @@ chsh --shell /bin/fish root
 
 ###### Symlink vi to vim and use VIM as default $EDITOR
 
-```sh
+```fish
 su root
 # We created a symbolic link
 # this means no fancy file copying just a link to it.
@@ -156,13 +156,13 @@ set -U EDITOR vim
 *Disables the annoying: 'Welcome to fish, the friendly interactive shell
 Type help for instructions on how to use fish'*
 
-```sh
+```fish
 set -U fish_greeting
 ```
 
 ###### Some nice fish settings tbh
 
-```sh
+```fish
 set fish_color_error red --bold
 fish_config theme choose "Tomorrow Night Bright"
 
@@ -173,7 +173,7 @@ funcsave coninfo
 
 ###### Install useful pacman and yay packages because they are frankly cool bruh
 
-```sh
+```fish
 su root
 
 # Do you use a NVIDIA videocard?
@@ -209,7 +209,7 @@ yay -S balena-etcher odysee-nativefier filezilla-svn electronmail-bin lymouth op
 
 ###### Setting up reflector
 
-```sh
+```fish
 su root
 pacman -S reflector
 systemctl enable reflector
@@ -218,7 +218,7 @@ systemctl status reflector
 
 ###### Setting up zram
 
-```sh
+```fish
 yay -S zramswap
 su root
 systemctl daemon-reload
@@ -228,7 +228,7 @@ systemctl start zramswap
 
 ###### Enabling some cpu tweaks
 
-```sh
+```fish
 yay -S cpupower ananicy
 
 su root
@@ -241,13 +241,13 @@ exit
 
 ###### Installing Proton
 
-```sh
+```fish
 yay -S proton
 ```
 
 ###### Install proton-ge-custom
 
-```sh
+```fish
 mkdir -p ~/.steam/root/compatibilitytools.d
 wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton7-15/GE-Proton7-15.tar.gz
 tar -xf GE-Proton7-15/GE-Proton7-15.tar.gz -C ~/.steam/root/compatibilitytools.d/
@@ -255,7 +255,7 @@ tar -xf GE-Proton7-15/GE-Proton7-15.tar.gz -C ~/.steam/root/compatibilitytools.d
 
 ###### Firefox hardening script
 
-```sh
+```fish
 cd /home/$USER/.mozila/firefox
 cd *.default-release
 rm user.js
@@ -271,7 +271,7 @@ sed -i "s/user_pref(\"security.OCSP.require\", true);/user_pref(\"security.OCSP.
 
 *We do not want to use our disk for ram space, just buy better ram ;)*
 
-```sh
+```fish
 echo "vm.swappiness=0" >> /etc/sysctl.d/swappiness.conf
 ```
 
@@ -279,7 +279,7 @@ echo "vm.swappiness=0" >> /etc/sysctl.d/swappiness.conf
 
 **NOTICE:** This increases system security, while adding less use-ability
 
-```sh
+```fish
 su root
 
 # enable UFW on system startup
@@ -301,7 +301,7 @@ exit
 
 **NOTICE:** This increases system security, while adding less use-ability
 
-```sh
+```fish
 su root
 
 echo 1 > /sys/devices/system/cpu/microcode/reload
@@ -313,7 +313,7 @@ exit
 
 **WARNING:** This makes your PC less secure but more fast!
 
-```sh
+```fish
 # Check existing cpu vuln
 grep . /sys/devices/system/cpu/vulnerabilities/*
 
@@ -334,7 +334,7 @@ journalctl -k --grep=microcode
 
 **WARNING:** This makes your PC less secure but more fast!
 
-```sh
+```fish
 su root
 # Install linux-zen kernel
 pacman -S linux-zen linux-zen-headers
@@ -351,7 +351,7 @@ mkinitcpio -P
 
 *Useful so that SSL works correctly, it is dependent on time after all*
 
-```sh
+```fish
 # Set timezone
 set -l mytimezone "Europe/Amsterdam"
 timedatectl set-timezone $mytimezone
@@ -370,7 +370,7 @@ timedatectl
 
 *tmux is a terminal multiplexer for Unix-like operating systems. It allows multiple terminal sessions to be accessed simultaneously in a single window. It is useful for running more than one command-line program at the same time. It can also be used to detach processes from their controlling terminals, allowing SSH sessions to remain active without being visible.*
 
-```sh
+```fish
 yay -S tmux
 ```
 
@@ -378,13 +378,13 @@ yay -S tmux
 
 *You'll want to have TMUX enabled on each new tillex session*
 
-```sh
+```fish
 echo -e 'if not set -q TMUX\n    set -g TMUX tmux new-session -d -s base\n    eval $TMUX\n    tmux attach-session -d -t base\nend' > ~/.config/fish/conf.d/tmux.fish
 ```
 
 ###### Enable and start GDM (GNOME Display Manager) service
 
-```sh
+```fish
 su root
 systemctl daemon-reload
 systemctl enable gdm.service
@@ -393,7 +393,7 @@ systemctl start gdm.service
 
 ###### Enable reflector service (so pacman mirrorlists get updated periodically)
 
-```sh
+```fish
 su root
 pacman -S reflector
 systemctl daemon-reload
@@ -404,7 +404,7 @@ systemctl start reflector.service
 
 ###### Use NTPSEC for added security ([Why?](https://medium.com/linode-cube/why-you-should-consider-moving-from-ntp-to-ntpsec-edab616b6740))
 
-```sh
+```fish
 # Install NTPSEC
 yay -S ntpsec
 
@@ -422,14 +422,14 @@ systemctl status ntpd.service
 
 ###### Always use latest node version
 
-```sh
+```fish
 su root
 echo "nvm use latest &>/tmp/2" >> /usr/share/fish/config.fish
 ```
 
 ###### Install virtual fish (You are a python nerd, right?)
 
-```sh
+```fish
 # Make sure to have python 3.1+
 /usr/bin/python -v # should be over 3.1
 /usr/bin/pip install virtualfish
@@ -440,13 +440,13 @@ echo "nvm use latest &>/tmp/2" >> /usr/share/fish/config.fish
 
 *Now type*
 
-```sh
+```fish
 funced fish_prompt
 ```
 
 *and press enter, add this in the function fish_prompt function*
 
-```sh
+```fish
 if set -q VIRTUAL_ENV
     echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
 end
@@ -454,7 +454,7 @@ end
 
 *Press enter again*
 
-```sh
+```fish
 funcsave fish_prompt
 ```
 
@@ -466,7 +466,7 @@ And press enter again!
 
 *Please note: this is per user install. not globally*
 
-```sh
+```fish
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisherbash
 ```
 
@@ -474,7 +474,7 @@ curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisherbas
 
 *There is some information about these plugins below, read carefully :)*
 
-```sh
+```fish
 fisher install jethrokuan/fzf
 fisher install jorgebucaran/nvm.fish
 fisher install jethrokuan/z
@@ -482,7 +482,7 @@ fisher install jethrokuan/z
 
 ###### Add some useful functions to fish
 
-```sh
+```fish
 alias update "sudo pacman -Syu;yay -Syu;nvm install latest"
 funcsave update
 
@@ -491,7 +491,7 @@ funcsave update
 
 ###### Show complete path in fish
 
-```sh
+```fish
 set -U fish_prompt_pwd_dir_length 4200
 ```
 
@@ -528,7 +528,7 @@ Example:
 
 ### gnome-extensions (optional)
 
-```sh
+```fish
 /usr/bin/yay -S gnome-shell-extensions
 
 # If you use firefox, install the extension; it's super easy!
@@ -555,7 +555,7 @@ https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/
 
 ###### Install Kimi-40 theme
 
-```sh
+```fish
 su root
 cd /usr/share/themes/
 git clone https://github.com/EliverLara/Kimi.git
@@ -566,7 +566,7 @@ exit
 
 ##### Reboot system
 
-```sh
+```fish
 su root
 reboot
 ```
